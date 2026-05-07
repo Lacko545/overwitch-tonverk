@@ -31,20 +31,20 @@ else
 bin_PROGRAMS = overwitch $(CLI_UTILS)
 endif
 
+OVERWITCHLIB_FILES = engine.c engine.h dll.c dll.h utils.c utils.h overwitch.c overwitch.h resampler.c resampler.h
+
 lib_LTLIBRARIES = liboverwitch.la
-liboverwitch_la_SOURCES = engine.c engine.h dll.c dll.h utils.c utils.h overwitch.c overwitch.h resampler.c resampler.h
+liboverwitch_la_SOURCES = $(OVERWITCHLIB_FILES)
 liboverwitch_la_CFLAGS = -I$(top_srcdir)/src `$(PKG_CONFIG) --cflags $(LIB_LIBS)` -pthread $(SAMPLERATE_CFLAGS) $(SNDFILE_CFLAGS) $(AM_CFLAGS)
 liboverwitch_la_LDFLAGS = `$(PKG_CONFIG) --libs $(LIB_LIBS)` $(SAMPLERATE_LIBS)
 include_HEADERS = overwitch.h
 
-overwitch_SOURCES = main.c overwitch_device.c overwitch_device.h jclient.c jclient.h preferences.c preferences.h message.c message.h
-overwitch_service_SOURCES = main-service.c overwitch_device.c overwitch_device.h jclient.c jclient.h preferences.c preferences.h message.c message.h
+overwitch_SOURCES = main.c overwitch_device.c overwitch_device.h jclient.c jclient.h preferences.c preferences.h message.c message.h $(OVERWITCHLIB_FILES)
+overwitch_service_SOURCES = main-service.c overwitch_device.c overwitch_device.h jclient.c jclient.h preferences.c preferences.h message.c message.h $(OVERWITCHLIB_FILES)
 overwitch_cli_SOURCES = main-cli.c jclient.c jclient.h common.c common.h
 overwitch_play_SOURCES = main-play.c common.c common.h
 overwitch_record_SOURCES = main-record.c common.c common.h
 
-overwitch_LDADD = liboverwitch.la
-overwitch_service_LDADD = liboverwitch.la
 overwitch_cli_LDADD = liboverwitch.la
 overwitch_play_LDADD = liboverwitch.la
 overwitch_record_LDADD = liboverwitch.la
