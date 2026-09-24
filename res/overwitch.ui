@@ -376,6 +376,7 @@ Stefan Rehm &lt;droelfdroelf@gmail.com&gt;</property>
               <object class="GtkMenuButton" id="menu_button">
                 <property name="icon-name">open-menu-symbolic</property>
                 <property name="menu-model">main_popover_model</property>
+                <property name="primary">True</property>
                 <property name="valign">center</property>
               </object>
             </child>
